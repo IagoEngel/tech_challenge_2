@@ -9,7 +9,6 @@ export class PostagemMongooseRepository implements PostagemRepository {
     @InjectModel(Postagem.name) private postagemModel: Model<Postagem>,
   ) {}
 
-  // ALUNOS
   async getAllPosts(): Promise<IPostagem[]> {
     return this.postagemModel.find().exec();
   }
@@ -26,29 +25,5 @@ export class PostagemMongooseRepository implements PostagemRepository {
         Titulo: { $regex: queries },
       })
       .exec();
-  }
-
-  // ADMINS - PROFESSORES
-  getAllPostAdmin(): Promise<IPostagem[]> {
-    return this.postagemModel.find().exec();
-  }
-
-  async createPost(post: IPostagem): Promise<void> {
-    const createPost = new this.postagemModel(post);
-    await createPost.save();
-  }
-
-  async updatePost(post: IPostagem): Promise<void> {
-    const { Id, Titulo, Conteudo, ProfessorId } = post;
-    await this.postagemModel
-      .updateOne(
-        { _id: Id },
-        { Titulo: Titulo, Conteudo: Conteudo, ProfessorId: ProfessorId },
-      )
-      .exec();
-  }
-
-  async deletePost(postId: number): Promise<void> {
-    await this.postagemModel.deleteOne({ _id: postId }).exec();
   }
 }
