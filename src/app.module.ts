@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { PostagemModule } from './posts/posts.module';
+import { ProfessorModule } from './professor/professor.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { PostagemModule } from './posts/posts.module';
     }),
     MongooseModule.forRoot(process.env.MONGO_URI),
     PostagemModule,
+    ProfessorModule,
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,

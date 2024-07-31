@@ -1,4 +1,6 @@
 export interface IProfessor {
-  Id?: string;
+  id?: string;
   Nome: string;
+  Email: string;
+  Password: string;
 }

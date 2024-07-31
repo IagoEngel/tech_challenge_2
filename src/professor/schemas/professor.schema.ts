@@ -5,10 +5,16 @@ import mongoose from 'mongoose';
 @Schema()
 export class Professor implements IProfessor {
   @Prop({ type: mongoose.Schema.Types.ObjectId })
-  Id?: string;
+  id?: string;
 
   @Prop({})
   Nome: string;
+
+  @Prop({})
+  Email: string;
+
+  @Prop({})
+  Password: string;
 }
 
 export const ProfessorSchema = SchemaFactory.createForClass(Professor);

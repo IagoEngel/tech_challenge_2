@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PostagemRepository } from '../repositories/post.repository';
+import { IPostagem } from '../schemas/models/post.interface';
 
 @Injectable()
 export class PostagemService {
@@ -20,5 +21,17 @@ export class PostagemService {
 
   async searchPost(queryString: string) {
     return await this.postagemRepository.searchPost(queryString);
+  }
+
+  async createPost(post: IPostagem): Promise<void> {
+    return await this.postagemRepository.createPost(post);
+  }
+
+  async updatePost(post: IPostagem): Promise<void> {
+    return await this.postagemRepository.updatePost(post);
+  }
+
+  async deletePost(postId: string): Promise<void> {
+    return await this.postagemRepository.deletePost(postId);
   }
 }

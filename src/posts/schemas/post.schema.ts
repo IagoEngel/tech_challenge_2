@@ -5,7 +5,7 @@ import { IPostagem } from './models/post.interface';
 @Schema()
 export class Postagem implements IPostagem {
   @Prop({ type: mongoose.Schema.Types.ObjectId })
-  Id?: string;
+  id?: string;
 
   @Prop({})
   Titulo: string;

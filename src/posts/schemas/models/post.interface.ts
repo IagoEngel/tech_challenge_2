@@ -1,5 +1,5 @@
 export interface IPostagem {
-  Id?: string;
+  id?: string;
   Titulo: string;
   Conteudo: string;
   CreatedAt?: Date;

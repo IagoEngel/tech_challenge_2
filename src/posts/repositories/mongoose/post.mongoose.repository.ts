@@ -26,4 +26,23 @@ export class PostagemMongooseRepository implements PostagemRepository {
       })
       .exec();
   }
+
+  async createPost(post: IPostagem): Promise<void> {
+    const createPost = new this.postagemModel(post);
+    await createPost.save();
+  }
+
+  async updatePost(post: IPostagem): Promise<void> {
+    const { Id, Titulo, Conteudo, ProfessorId } = post;
+    await this.postagemModel
+      .updateOne(
+        { _id: Id },
+        { Titulo: Titulo, Conteudo: Conteudo, ProfessorId: ProfessorId },
+      )
+      .exec();
+  }
+
+  async deletePost(postId: string): Promise<void> {
+    await this.postagemModel.deleteOne({ id: postId }).exec();
+  }
 }

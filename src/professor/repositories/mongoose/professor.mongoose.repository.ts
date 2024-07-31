@@ -4,6 +4,7 @@ import { Professor } from 'src/professor/schemas/professor.schema';
 import { Model } from 'mongoose';
 import { IPostagem } from 'src/posts/schemas/models/post.interface';
 import { Postagem } from 'src/posts/schemas/post.schema';
+import { IProfessor } from 'src/professor/schemas/models/professor.interface';
 
 export class ProfessorMongooseRepository implements ProfessorRepository {
   constructor(
@@ -11,26 +12,15 @@ export class ProfessorMongooseRepository implements ProfessorRepository {
     @InjectModel(Postagem.name) private postagemModel: Model<Postagem>,
   ) {}
 
+  async findProfessor(email: string): Promise<IProfessor> {
+    return await this.professorModel.findOne({ Email: email }).exec();
+  }
+
+  // async createLogin(professor: IProfessor): Promise<IProfessor> {
+  //   return await new this.professorModel(professor).save();
+  // }
+
   getAllPostAdmin(): Promise<IPostagem[]> {
     return this.postagemModel.find().exec();
-  }
-
-  async createPost(post: IPostagem): Promise<void> {
-    const createPost = new this.postagemModel(post);
-    await createPost.save();
-  }
-
-  async updatePost(post: IPostagem): Promise<void> {
-    const { Id, Titulo, Conteudo, ProfessorId } = post;
-    await this.postagemModel
-      .updateOne(
-        { _id: Id },
-        { Titulo: Titulo, Conteudo: Conteudo, ProfessorId: ProfessorId },
-      )
-      .exec();
-  }
-
-  async deletePost(postId: number): Promise<void> {
-    await this.postagemModel.deleteOne({ _id: postId }).exec();
   }
 }
