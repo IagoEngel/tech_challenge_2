@@ -17,6 +17,25 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'prettier/prettier': [
+      'error', {
+        'endOfLine': 'auto',
+        'singleQuoate': true,
+        'semi': true,
+        'trailingComma': 'all',
+      }
+    ],
+    '@typescript-eslint/naming-convention': [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
