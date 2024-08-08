@@ -10,7 +10,7 @@ export class PostagemMongooseRepository implements PostagemRepository {
   ) {}
 
   async getAllPosts(): Promise<IPostagem[]> {
-    return this.postagemModel.find().exec();
+    return this.postagemModel.find().populate('ProfessorId').exec();
   }
 
   getPost(postId: number): Promise<IPostagem> {
@@ -33,16 +33,13 @@ export class PostagemMongooseRepository implements PostagemRepository {
   }
 
   async updatePost(post: IPostagem): Promise<void> {
-    const { id, Titulo, Conteudo, ProfessorId } = post;
+    const { id, Titulo, Conteudo, UpdatedAt } = post;
     await this.postagemModel
-      .updateOne(
-        { _id: id },
-        { Titulo: Titulo, Conteudo: Conteudo, ProfessorId: ProfessorId },
-      )
+      .updateOne({ _id: id }, { Titulo: Titulo, Conteudo, UpdatedAt })
       .exec();
   }
 
   async deletePost(postId: string): Promise<void> {
-    await this.postagemModel.deleteOne({ id: postId }).exec();
+    await this.postagemModel.findByIdAndDelete(postId).exec();
   }
 }

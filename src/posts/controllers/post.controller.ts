@@ -57,6 +57,8 @@ export class PostagemController {
       Titulo,
       Conteudo,
       ProfessorId,
+      CreatedAt: new Date(),
+      UpdatedAt: new Date(),
     });
   }
 
@@ -72,12 +74,13 @@ export class PostagemController {
       Titulo,
       Conteudo,
       ProfessorId,
+      UpdatedAt: new Date(),
     });
   }
 
   @UseGuards(AuthGuard)
   @Delete(':postId')
-  async deletePost(postId: string) {
+  async deletePost(@Param('postId') postId: string) {
     return this.postagemService.deletePost(postId);
   }
 }
