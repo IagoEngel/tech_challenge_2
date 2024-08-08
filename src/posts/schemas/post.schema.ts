@@ -20,6 +20,6 @@ export class Postagem implements IPostagem {
   UpdatedAt: Date;
 
   @Prop({})
-  ProfessorId: number;
+  ProfessorId: string;
 }
 export const PostagemSchema = SchemaFactory.createForClass(Postagem);

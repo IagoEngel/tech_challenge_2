@@ -4,5 +4,5 @@ export interface IPostagem {
   Conteudo: string;
   CreatedAt?: Date;
   UpdatedAt?: Date;
-  ProfessorId: number;
+  ProfessorId: string;
 }

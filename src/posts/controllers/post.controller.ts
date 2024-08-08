@@ -19,12 +19,12 @@ import { ZodValidationPipe } from 'src/shared/pipe/zod-validation.pipe';
 const createPostagemSchema = z.object({
   Titulo: z.string(),
   Conteudo: z.string(),
-  ProfessorId: z.coerce.number(),
+  ProfessorId: z.string(),
 });
 const updatePostagemSchema = z.object({
   Titulo: z.string(),
   Conteudo: z.string(),
-  ProfessorId: z.coerce.number(),
+  ProfessorId: z.string(),
 });
 
 type CreatePost = z.infer<typeof createPostagemSchema>;
