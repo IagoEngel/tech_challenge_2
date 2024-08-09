@@ -10,9 +10,10 @@ import { ZodValidationPipe } from 'src/shared/pipe/zod-validation.pipe';
 import { ProfessorService } from '../services/professor.service';
 import { z } from 'zod';
 import { JwtService } from '@nestjs/jwt';
-// import { hash } from 'bcryptjs';
+import { hash } from 'bcryptjs';
 
 const loginProfessorSchema = z.object({
+  Nome: z.string(),
   Email: z.string(),
   Password: z.string(),
 });
@@ -46,16 +47,16 @@ export class ProfessorController {
     return this.professorService.findProfessors();
   }
 
-  // @Post('new-professor')
-  // async createLogin(
-  //   @Body(new ZodValidationPipe(loginProfessorSchema))
-  //   { Nome, Email, Password }: LoginProfessorGet,
-  // ) {
-  //   const hashedPassword = await hash(Password, 8);
-  //   return this.professorService.createLogin({
-  //     Nome,
-  //     Email,
-  //     Password: hashedPassword,
-  //   });
-  // }
+  @Post('new-professor')
+  async createLogin(
+    @Body(new ZodValidationPipe(loginProfessorSchema))
+    { Nome, Email, Password }: LoginProfessorGet,
+  ) {
+    const hashedPassword = await hash(Password, 8);
+    return this.professorService.createLogin({
+      Nome,
+      Email,
+      Password: hashedPassword,
+    });
+  }
 }

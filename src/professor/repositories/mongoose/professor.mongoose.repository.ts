@@ -19,7 +19,7 @@ export class ProfessorMongooseRepository implements ProfessorRepository {
     return await this.professorModel.find().exec();
   }
 
-  // async createLogin(professor: IProfessor): Promise<IProfessor> {
-  //   return await new this.professorModel(professor).save();
-  // }
+  async createLogin(professor: IProfessor): Promise<IProfessor> {
+    return await new this.professorModel(professor).save();
+  }
 }

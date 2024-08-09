@@ -2,6 +2,7 @@ import { compare } from 'bcryptjs';
 import { ProfessorRepository } from '../repositories/professor.repository';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Professor } from '../schemas/professor.schema';
+import { IProfessor } from '../schemas/models/professor.interface';
 
 @Injectable()
 export class ProfessorService {
@@ -24,7 +25,7 @@ export class ProfessorService {
     return professores;
   }
 
-  // async createLogin(professor: IProfessor) {
-  //   return await this.professorRepository.createLogin(professor);
-  // }
+  async createLogin(professor: IProfessor) {
+    return await this.professorRepository.createLogin(professor);
+  }
 }
