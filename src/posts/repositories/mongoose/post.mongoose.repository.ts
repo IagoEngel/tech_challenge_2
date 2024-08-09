@@ -14,7 +14,7 @@ export class PostagemMongooseRepository implements PostagemRepository {
   }
 
   getPost(postId: number): Promise<IPostagem> {
-    return this.postagemModel.findById(postId).exec();
+    return this.postagemModel.findById(postId).populate('ProfessorId').exec();
   }
 
   searchPost(queryString: string): Promise<IPostagem[]> {
