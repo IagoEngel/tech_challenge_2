@@ -25,11 +25,13 @@ export class ProfessorService {
     return professor;
   }
 
+  async findProfessors() {
+    const professores = await this.professorRepository.findProfessors();
+    console.log('professores ===> ', professores);
+    return professores;
+  }
+
   // async createLogin(professor: IProfessor) {
   //   return await this.professorRepository.createLogin(professor);
   // }
-
-  async getAllPostAdmin() {
-    return await this.professorRepository.getAllPostAdmin();
-  }
 }

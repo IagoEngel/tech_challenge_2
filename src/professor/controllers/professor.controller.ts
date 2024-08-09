@@ -30,6 +30,11 @@ export class ProfessorController {
     return this.professorService.login(Email, Password);
   }
 
+  @Get()
+  async findProfessors() {
+    return this.professorService.findProfessors();
+  }
+
   // @Post('new-professor')
   // async createLogin(
   //   @Body(new ZodValidationPipe(loginProfessorSchema))
@@ -42,9 +47,4 @@ export class ProfessorController {
   //     Password: hashedPassword,
   //   });
   // }
-
-  @Get()
-  async getAllPostAdmin() {
-    return this.professorService.getAllPostAdmin();
-  }
 }
