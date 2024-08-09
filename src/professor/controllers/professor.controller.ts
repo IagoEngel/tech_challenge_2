@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Post,
   // UseInterceptors,
 } from '@nestjs/common';
 // import { LoggingInterceptor } from 'src/shared/interceptors/logging.interceptor';
@@ -26,7 +27,7 @@ export class ProfessorController {
     private jwtService: JwtService,
   ) {}
 
-  @Get('login')
+  @Post('login')
   async login(
     @Body(new ZodValidationPipe(loginProfessorSchema))
     { Email, Password }: LoginProfessorGet,
