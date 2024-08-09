@@ -8,6 +8,7 @@ import {
 import { ZodValidationPipe } from 'src/shared/pipe/zod-validation.pipe';
 import { ProfessorService } from '../services/professor.service';
 import { z } from 'zod';
+import { JwtService } from '@nestjs/jwt';
 // import { hash } from 'bcryptjs';
 
 const loginProfessorSchema = z.object({
@@ -20,14 +21,23 @@ type LoginProfessorGet = z.infer<typeof loginProfessorSchema>;
 // @UseInterceptors(LoggingInterceptor)
 @Controller('professores')
 export class ProfessorController {
-  constructor(private readonly professorService: ProfessorService) {}
+  constructor(
+    private readonly professorService: ProfessorService,
+    private jwtService: JwtService,
+  ) {}
 
   @Get('login')
   async login(
     @Body(new ZodValidationPipe(loginProfessorSchema))
     { Email, Password }: LoginProfessorGet,
   ) {
-    return this.professorService.login(Email, Password);
+    const professor = await this.professorService.login(Email, Password);
+    const token = await this.jwtService.signAsync(
+      { Email },
+      { expiresIn: '30m' },
+    );
+    console.log('token ===> ', token);
+    return { professor, token };
   }
 
   @Get()
