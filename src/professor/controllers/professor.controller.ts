@@ -33,14 +33,11 @@ export class ProfessorController {
     @Body(new ZodValidationPipe(loginProfessorSchema))
     { Email, Password }: LoginProfessorGet,
   ) {
-    console.log('aiduwhgui');
-
     const professor = await this.professorService.login(Email, Password);
     const token = await this.jwtService.signAsync(
       { Email },
       { expiresIn: '30m' },
     );
-    console.log('token ===> ', token);
     return { professor, token };
   }
 

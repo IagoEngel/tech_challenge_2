@@ -20,9 +20,7 @@ export class ProfessorService {
   }
 
   async findProfessors() {
-    const professores = await this.professorRepository.findProfessors();
-    console.log('professores ===> ', professores);
-    return professores;
+    return await this.professorRepository.findProfessors();
   }
 
   async createLogin(professor: IProfessor) {
