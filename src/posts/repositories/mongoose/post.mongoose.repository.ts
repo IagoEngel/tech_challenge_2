@@ -26,6 +26,7 @@ export class PostagemMongooseRepository implements PostagemRepository {
         .find({
           Titulo: { $regex: queries[i], $options: 'i' },
         })
+        .populate('ProfessorId')
         .exec();
 
       for (let j = 0; j < element.length; j++) {
