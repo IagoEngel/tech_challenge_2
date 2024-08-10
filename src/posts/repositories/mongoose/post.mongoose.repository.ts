@@ -17,14 +17,25 @@ export class PostagemMongooseRepository implements PostagemRepository {
     return this.postagemModel.findById(postId).populate('ProfessorId').exec();
   }
 
-  searchPost(queryString: string): Promise<IPostagem[]> {
+  async searchPost(queryString: string): Promise<IPostagem[]> {
     const queries = queryString.split(', ');
 
-    return this.postagemModel
-      .find({
-        Titulo: { $regex: queries },
-      })
-      .exec();
+    const aux = [];
+    for (let i = 0; i < queries.length; i++) {
+      const element = await this.postagemModel
+        .find({
+          Titulo: { $regex: queries[i], $options: 'i' },
+        })
+        .exec();
+
+      for (let j = 0; j < element.length; j++) {
+        if (!aux.includes(element[j])) {
+          aux.push(element[j]);
+        }
+      }
+    }
+
+    return aux;
   }
 
   async createPost(post: IPostagem): Promise<void> {

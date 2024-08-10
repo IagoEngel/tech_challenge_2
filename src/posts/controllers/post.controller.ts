@@ -26,13 +26,22 @@ const updatePostagemSchema = z.object({
   Conteudo: z.string(),
   ProfessorId: z.string(),
 });
+const searchPostSchema = z.object({
+  queryString: z.string(),
+});
 
 type CreatePost = z.infer<typeof createPostagemSchema>;
 type UpdatePost = z.infer<typeof updatePostagemSchema>;
+type SearchPosts = z.infer<typeof searchPostSchema>;
 @UseInterceptors(LoggingInterceptor)
 @Controller('posts')
 export class PostagemController {
   constructor(private readonly postagemService: PostagemService) {}
+
+  @Post('/search')
+  async searchPost(@Body() { queryString }: SearchPosts) {
+    return this.postagemService.searchPost(queryString);
+  }
 
   @Get()
   async getAllPosts() {
@@ -42,11 +51,6 @@ export class PostagemController {
   @Get(':postId')
   async getPost(@Param('postId') postId: number) {
     return this.postagemService.getPost(postId);
-  }
-
-  @Get('/search')
-  async searchPost(@Body() queryString: string) {
-    return this.postagemService.searchPost(queryString);
   }
 
   @UseGuards(AuthGuard)
