@@ -11,10 +11,10 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import { PostagemService } from '../services/post.service';
-import { LoggingInterceptor } from 'src/shared/interceptors/logging.interceptor';
+import { LoggingInterceptor } from '../../shared/interceptors/logging.interceptor';
 import { z } from 'zod';
-import { AuthGuard } from 'src/shared/guard/auth.guard';
-import { ZodValidationPipe } from 'src/shared/pipe/zod-validation.pipe';
+import { AuthGuard } from '../../shared/guard/auth.guard';
+import { ZodValidationPipe } from '../../shared/pipe/zod-validation.pipe';
 
 const createPostagemSchema = z.object({
   Titulo: z.string(),

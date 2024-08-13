@@ -1,8 +1,8 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { PostagemRepository } from '../post.repository';
-import { Postagem } from 'src/posts/schemas/post.schema';
+import { Postagem } from '../../schemas/post.schema';
 import { Model } from 'mongoose';
-import { IPostagem } from 'src/posts/schemas/models/post.interface';
+import { IPostagem } from '../../schemas/models/post.interface';
 
 export class PostagemMongooseRepository implements PostagemRepository {
   constructor(

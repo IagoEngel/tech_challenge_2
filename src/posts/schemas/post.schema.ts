@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { IPostagem } from './models/post.interface';
-import { ProfessorSchema } from 'src/professor/schemas/professor.schema';
-import { IProfessor } from 'src/professor/schemas/models/professor.interface';
+import { ProfessorSchema } from '../../professor/schemas/professor.schema';
+import { IProfessor } from '../../professor/schemas/models/professor.interface';
 
 @Schema()
 export class Postagem implements IPostagem {

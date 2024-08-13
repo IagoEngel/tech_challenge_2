@@ -1,4 +1,4 @@
-import { IProfessor } from 'src/professor/schemas/models/professor.interface';
+import { IProfessor } from '../../../professor/schemas/models/professor.interface';
 
 export interface IPostagem {
   id?: string;

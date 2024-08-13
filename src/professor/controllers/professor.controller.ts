@@ -6,7 +6,7 @@ import {
   // UseInterceptors,
 } from '@nestjs/common';
 // import { LoggingInterceptor } from 'src/shared/interceptors/logging.interceptor';
-import { ZodValidationPipe } from 'src/shared/pipe/zod-validation.pipe';
+import { ZodValidationPipe } from '../../shared/pipe/zod-validation.pipe';
 import { ProfessorService } from '../services/professor.service';
 import { z } from 'zod';
 import { JwtService } from '@nestjs/jwt';

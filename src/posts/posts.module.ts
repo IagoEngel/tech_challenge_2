@@ -4,7 +4,7 @@ import { Postagem, PostagemSchema } from './schemas/post.schema';
 import { PostagemRepository } from './repositories/post.repository';
 import { PostagemMongooseRepository } from './repositories/mongoose/post.mongoose.repository';
 import { PostagemService } from './services/post.service';
-import { PrometheusService } from 'src/shared/services/prometheus.service';
+import { PrometheusService } from '../shared/services/prometheus.service';
 import { PostagemController } from './controllers/post.controller';
 
 @Module({

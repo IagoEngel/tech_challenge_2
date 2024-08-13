@@ -6,7 +6,7 @@ import { ProfessorRepository } from './repositories/professor.repository';
 import { ProfessorMongooseRepository } from './repositories/mongoose/professor.mongoose.repository';
 import { ProfessorService } from './services/professor.service';
 import { ProfessorController } from './controllers/professor.controller';
-import { Postagem, PostagemSchema } from 'src/posts/schemas/post.schema';
+import { Postagem, PostagemSchema } from '../posts/schemas/post.schema';
 
 @Module({
   imports: [

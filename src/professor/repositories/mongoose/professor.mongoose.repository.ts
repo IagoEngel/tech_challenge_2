@@ -1,9 +1,9 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { ProfessorRepository } from '../professor.repository';
-import { Professor } from 'src/professor/schemas/professor.schema';
+import { Professor } from '../../schemas/professor.schema';
 import { Model } from 'mongoose';
-import { Postagem } from 'src/posts/schemas/post.schema';
-import { IProfessor } from 'src/professor/schemas/models/professor.interface';
+import { Postagem } from '../../../posts/schemas/post.schema';
+import { IProfessor } from '../../schemas/models/professor.interface';
 
 export class ProfessorMongooseRepository implements ProfessorRepository {
   constructor(

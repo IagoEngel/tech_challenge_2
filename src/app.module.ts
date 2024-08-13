@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { PostagemModule } from './posts/posts.module';
 import { ProfessorModule } from './professor/professor.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ProfessorModule } from './professor/professor.module';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '10m' },
     }),
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
