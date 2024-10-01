@@ -44,11 +44,14 @@ export class PostagemController {
   @HttpCode(HttpStatus.OK)
   async searchPost(@Body() { queryString }: SearchPosts) {
     console.log('Controller queryString ==> ', queryString);
+    console.log('SEA ==> ', await this.postagemService.searchPost(queryString));
     return this.postagemService.searchPost(queryString);
   }
 
   @Get()
   async getAllPosts() {
+    const ocean = await this.postagemService.getAllPosts();
+    console.log('OCEAN ==> ', ocean);
     return this.postagemService.getAllPosts();
   }
 
