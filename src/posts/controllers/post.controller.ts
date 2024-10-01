@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Put,
@@ -39,6 +41,7 @@ export class PostagemController {
   constructor(private readonly postagemService: PostagemService) {}
 
   @Post('/search')
+  @HttpCode(HttpStatus.OK)
   async searchPost(@Body() { queryString }: SearchPosts) {
     console.log('Controller queryString ==> ', queryString);
     return this.postagemService.searchPost(queryString);
