@@ -18,6 +18,8 @@ export class PostagemMongooseRepository implements PostagemRepository {
   }
 
   async searchPost(queryString: string): Promise<IPostagem[]> {
+    console.log('Mongoose queryString ==> ', queryString);
+
     const queries = queryString.split(', ');
 
     const aux = [];

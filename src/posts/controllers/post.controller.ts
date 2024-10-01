@@ -40,6 +40,7 @@ export class PostagemController {
 
   @Post('/search')
   async searchPost(@Body() { queryString }: SearchPosts) {
+    console.log('Controller queryString ==> ', queryString);
     return this.postagemService.searchPost(queryString);
   }
 
