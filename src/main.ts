@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './shared/filters/http-exception';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalFilters(new HttpExceptionFilter());
   app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

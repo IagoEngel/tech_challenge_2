@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   HttpCode,
-  HttpStatus,
   Param,
   Post,
   Put,
@@ -41,17 +40,13 @@ export class PostagemController {
   constructor(private readonly postagemService: PostagemService) {}
 
   @Post('/search')
-  @HttpCode(HttpStatus.OK)
+  @HttpCode(200)
   async searchPost(@Body() { queryString }: SearchPosts) {
-    console.log('Controller queryString ==> ', queryString);
-    console.log('SEA ==> ', await this.postagemService.searchPost(queryString));
     return this.postagemService.searchPost(queryString);
   }
 
   @Get()
   async getAllPosts() {
-    const ocean = await this.postagemService.getAllPosts();
-    console.log('OCEAN ==> ', ocean);
     return this.postagemService.getAllPosts();
   }
 

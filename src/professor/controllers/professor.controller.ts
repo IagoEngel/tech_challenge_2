@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   Post,
   // UseInterceptors,
 } from '@nestjs/common';
@@ -29,6 +30,7 @@ export class ProfessorController {
   ) {}
 
   @Post('login')
+  @HttpCode(200)
   async login(
     @Body(new ZodValidationPipe(loginProfessorSchema))
     { Email, Password }: LoginProfessorGet,

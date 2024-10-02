@@ -18,8 +18,6 @@ export class PostagemMongooseRepository implements PostagemRepository {
   }
 
   async searchPost(queryString: string): Promise<IPostagem[]> {
-    console.log('Mongoose queryString ==> ', queryString);
-
     const queries = queryString.split(', ');
 
     const aux = [];
@@ -31,16 +29,12 @@ export class PostagemMongooseRepository implements PostagemRepository {
         .populate('ProfessorId')
         .exec();
 
-      console.log('ELEMENT ==> ', element);
-
       for (let j = 0; j < element.length; j++) {
         if (!aux.includes(element[j])) {
           aux.push(element[j]);
         }
       }
     }
-
-    console.log('aux ==> ', aux);
 
     return aux;
   }
